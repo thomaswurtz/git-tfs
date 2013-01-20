@@ -62,7 +62,7 @@ namespace Sep.Git.Tfs.VsCommon
             var mergedItemsToFirstChangesetInBranchToCreate =
                 VersionControl.TrackMerges(new int[] {firstChangesetInBranchToCreate.ChangesetId},
                                            new ItemIdentifier(tfsPathBranchToCreate),
-                                           new ItemIdentifier[] {new ItemIdentifier(tfsPathParentBranch),}, null);
+                                           new ItemIdentifier[] {new ItemIdentifier(tfsPathParentBranch),}, null).OrderBy(x => x.SourceChangeset.ChangesetId);
 
             // Find the last changeset that was created before the first one in the new branch to be created.
             var lastChangesetsMergeFromParentBranch = mergedItemsToFirstChangesetInBranchToCreate.LastOrDefault(
