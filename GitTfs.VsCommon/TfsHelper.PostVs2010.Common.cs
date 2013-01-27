@@ -78,7 +78,7 @@ namespace Sep.Git.Tfs.VsCommon
                              new ItemIdentifier(tfsPathBranchToCreate),
                              new ItemIdentifier[] {new ItemIdentifier(tfsPathParentBranch),},
                              null)
-                .OrderBy(x => x.SourceChangeset.ChangesetId);
+                .OrderBy(x => x.SourceChangeset.ChangesetId).ToArray();
 
             var rootChangesetInParentBranch =
                 GetRelevantChangesetBasedOnChangeType(mergedItemsToFirstChangesetInBranchToCreate, tfsPathParentBranch);
@@ -108,6 +108,7 @@ namespace Sep.Git.Tfs.VsCommon
         /// <returns><value>True</value> if the given <paramref name="merge"/> is relevant; <value>False</value> otherwise.</returns>
         private static ChangesetSummary GetRelevantChangesetBasedOnChangeType(ExtendedMerge[] merges, string tfsPathParentBranch)
         {
+            Debugger.Break();
             if (merges == null) return null;
 
             var merge = merges
